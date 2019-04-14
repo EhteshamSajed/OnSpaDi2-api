@@ -15,6 +15,7 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import com.personal.OnSpaDi2.currentParkingState.CurrentParkingState;
 import com.personal.OnSpaDi2.parkingInformation.ParkingInformation;
+import com.personal.OnSpaDi2.trend.Trend;
 
 @Entity
 public class LocationInformation {
@@ -33,6 +34,13 @@ public class LocationInformation {
 	
 	@OneToMany(fetch=FetchType.LAZY, mappedBy = "locationInformation")
 	private List<ParkingInformation> parkingInformations;
+	
+	@OneToMany(fetch=FetchType.LAZY, mappedBy = "locationInformation")
+	private List<CurrentParkingState> currentParkingStates;
+	
+	@OneToMany(fetch=FetchType.LAZY, mappedBy = "locationInformation")
+	private List<Trend> trend;
+	
 	
 	public LocationInformation() {
 		super();
@@ -88,5 +96,17 @@ public class LocationInformation {
 	}
 	public void setTotalParkings(int totalParkings) {
 		this.totalParkings = totalParkings;
+	}
+	public List<CurrentParkingState> getCurrentParkingStates() {
+		return currentParkingStates;
+	}
+	public void setCurrentParkingStates(List<CurrentParkingState> currentParkingStates) {
+		this.currentParkingStates = currentParkingStates;
+	}
+	public List<Trend> getTrend() {
+		return trend;
+	}
+	public void setTrend(List<Trend> trend) {
+		this.trend = trend;
 	}
 }
