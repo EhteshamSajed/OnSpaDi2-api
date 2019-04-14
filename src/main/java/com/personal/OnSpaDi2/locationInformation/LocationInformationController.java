@@ -2,12 +2,15 @@ package com.personal.OnSpaDi2.locationInformation;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
+import org.hibernate.hql.internal.ast.tree.IsNullLogicOperatorNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -21,9 +24,16 @@ public class LocationInformationController {
 		return locationInformationService.getAllLocationInformation();
 	}
 	
-	@RequestMapping("/locationInformation/{id}")
+	/*@RequestMapping("/locationInformation/{id}")						//			temporal disabled
 	public LocationInformation getParkingLocationById(@PathVariable int id) {
 		return locationInformationService.getLocationInformationById(id);
+	}*/
+	
+	@RequestMapping("/locationInformation/{id}")
+	public Map<String, Object> getParkingLocationById(@PathVariable int id, @RequestParam(required = false) String fields) {		
+		LocationInformation locationInformation = locationInformationService.getLocationInformationById(id);
+		return locationInformationService.convertLocationInformationToMap(locationInformation, fields);
+		
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/locationInformation")
