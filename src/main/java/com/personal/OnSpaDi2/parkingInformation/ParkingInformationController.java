@@ -2,12 +2,14 @@ package com.personal.OnSpaDi2.parkingInformation;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.personal.OnSpaDi2.locationInformation.LocationInformation;
@@ -31,10 +33,17 @@ public class ParkingInformationController {
 	public List<ParkingInformation> getAllParkingInformation(@PathVariable int locationId){
 		return parkingInformationService.getAllParkingInformation(locationId);
 	}
+//	
+//	@RequestMapping("/parkingInformation/{id}")
+//	public ParkingInformation getParkingInformationById(@PathVariable int id) {
+//		return parkingInformationService.getParkingInformationById(id);
+//	}
 	
+
 	@RequestMapping("/parkingInformation/{id}")
-	public ParkingInformation getParkingInformationById(@PathVariable int id) {
-		return parkingInformationService.getParkingInformationById(id);
+	public Map<String, Object> getParkingInformationById(@PathVariable int id, @RequestParam(required = false) String fields) {
+		ParkingInformation parkingInformation = parkingInformationService.getParkingInformationById(id);
+		return parkingInformationService.convertParkingInformationToMap(parkingInformation, fields);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/parkingInformation")
@@ -75,8 +84,8 @@ public class ParkingInformationController {
 		return response;
 	}
 	
-	@RequestMapping("/countParking/{locationId}")
+	/*@RequestMapping("/countParking/{locationId}")
 	public int countParkingInformationByLocationId(@PathVariable int locationId) {
 		return parkingInformationService.countParkingInformationByLocationId(locationId);
-	}
+	}*/
 }
