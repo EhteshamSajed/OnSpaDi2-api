@@ -14,6 +14,8 @@ import javax.persistence.ManyToOne;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.personal.OnSpaDi2.locationInformation.LocationInformation;
 import com.personal.OnSpaDi2.parkingInformation.ParkingInformation;
 
 @Entity
@@ -27,6 +29,10 @@ public class CurrentParkingState {
 	@JoinColumn(name = "parkingId")
 	@JsonIgnore
 	private ParkingInformation parkingInformation;
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name = "locationId")
+	@JsonIgnore	
+	private LocationInformation locationInformation;
 	private String parkingState;
 	private String sensorState;
 	@UpdateTimestamp
@@ -51,12 +57,6 @@ public class CurrentParkingState {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	/*public String getParkingId() {
-		return parkingId;
-	}
-	public void setParkingId(String parkingId) {
-		this.parkingId = parkingId;
-	}*/
 	public String getParkingState() {
 		return parkingState;
 	}
@@ -80,5 +80,17 @@ public class CurrentParkingState {
 	}
 	public void setParkingInformation(ParkingInformation parkingInformation) {
 		this.parkingInformation = parkingInformation;
+	}
+	public int getParkingId() {
+		return getParkingInformation().getParkingId();
+	}
+	public LocationInformation getLocationInformation() {
+		return locationInformation;
+	}
+	public void setLocationInformation(LocationInformation locationInformation) {
+		this.locationInformation = locationInformation;
+	}
+	public int getLocationId() {
+		return locationInformation.getLocationId();
 	}
 }
