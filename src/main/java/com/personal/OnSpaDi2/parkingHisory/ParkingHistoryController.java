@@ -34,10 +34,10 @@ public class ParkingHistoryController {
 		return parkingHistoryService.getParkingHistoryById(id);
 	}
 	
-	@RequestMapping(method = RequestMethod.POST, value = "/parkingHistory")
+	/*@RequestMapping(method = RequestMethod.POST, value = "/parkingHistory")
 	public ParkingHistoryResponse addParkingHistory(@RequestBody ParkingHistory parkingHistory) {		
 		return parkingHistoryService.addParkingHistory(parkingHistory);		
-	}	
+	}*/	
 
 	@RequestMapping(method = RequestMethod.POST, value = "parkingInformation/{parkingInformationId}/parkingHistory")
 	public ParkingHistoryResponse addParkingHistory(@RequestBody ParkingHistory parkingHistory, @PathVariable int parkingInformationId) {
