@@ -52,13 +52,7 @@ public class CurrentParkingStateController {
 	@RequestMapping("/locationInformation/{locationId}/countParkings")
 	public Map<String, Object> countParkingsByLocation(@PathVariable int locationId , @RequestParam(required = false) String fields){		
 		return currentParkingStateService.countParkingByLocation(locationId, fields);
-	}
-	
-	/*@RequestMapping(method = RequestMethod.POST, value = "/currentParkingState")
-	public CurrentParkingStateResponse addCurrentParkingState(@RequestBody CurrentParkingState currentParkingState) {
-		System.out.println(currentParkingState);
-		return currentParkingStateService.addCurrentParkingState(currentParkingState);		
-	}*/
+	}	
 		
 	@RequestMapping(method = RequestMethod.POST, value = "/parkingInformation/{parkingId}/currentParkingState")
 	public CurrentParkingStateResponse addCurrentParkingState(@RequestBody CurrentParkingState _currentParkingState, @PathVariable int parkingId) {
@@ -73,22 +67,10 @@ public class CurrentParkingStateController {
 			currentParkingState.setParkingInformation(new ParkingInformation(parkingId, 0, 0));
 			int locationId = parkingInformationService.getParkingInformationById(parkingId).getLocationInformation().getLocationId();
 			currentParkingState.setLocationInformation(new LocationInformation(locationId));
-		}
-		
+		}		
 		
 		return currentParkingStateService.addCurrentParkingState(currentParkingState);
-	}		
-	
-	@RequestMapping(method = RequestMethod.PUT, value = "/currentParkingState")
-	public CurrentParkingStateResponse updateCurrentParkingState(@RequestBody CurrentParkingState currentParkingState) {
-		return currentParkingStateService.updateCurrentParkingState(currentParkingState);
-	}
-	
-	@RequestMapping(method = RequestMethod.PUT, value = "/parkingInformation/{parkingInformationId}/currentParkingState")
-	public CurrentParkingStateResponse updateCurrentParkingState(@RequestBody CurrentParkingState currentParkingState, @PathVariable int parkingInformationId) {
-		currentParkingState.setParkingInformation(new ParkingInformation(parkingInformationId, 0, 0));
-		return currentParkingStateService.updateCurrentParkingState(currentParkingState);
-	}
+	}	
 	
 	@RequestMapping(method = RequestMethod.DELETE, value = "/currentParkingState/{id}")
 	public CurrentParkingStateResponse deleteCurrentParkingState(@PathVariable long id) {
