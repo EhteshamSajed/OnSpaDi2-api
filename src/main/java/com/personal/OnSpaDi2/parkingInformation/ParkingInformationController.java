@@ -62,10 +62,10 @@ public class ParkingInformationController {
 		return response;
 	}
 	
-	@RequestMapping(method = RequestMethod.PUT, value = "/parkingInformation")
-	public ParkingInformationResponse updateParkingInformation(@RequestBody ParkingInformation parkingInformation) {
-		return parkingInformationService.updateParkingInformation(parkingInformation);
-	}
+//	@RequestMapping(method = RequestMethod.PUT, value = "/parkingInformation")
+//	public ParkingInformationResponse updateParkingInformation(@RequestBody ParkingInformation parkingInformation) {
+//		return parkingInformationService.updateParkingInformation(parkingInformation);
+//	}
 	
 	@RequestMapping(method = RequestMethod.PUT, value = "/locationInformation/{locationId}/parkingInformation")
 	public ParkingInformationResponse updateParkingInformation(@RequestBody ParkingInformation parkingInformation, @PathVariable int locationId) {
