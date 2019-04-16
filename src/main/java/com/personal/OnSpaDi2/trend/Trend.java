@@ -31,6 +31,10 @@ public class Trend {
 	private int free;
 	private int occupied;
 	private int total;
+	private int traffic;
+	private int isEvent;
+	private int isRaining;
+	private int isSnowing;
 	
 	public Trend() {
 		super();
@@ -73,5 +77,29 @@ public class Trend {
 	}
 	public void setTotal(int total) {
 		this.total = total;
+	}
+	public int getTraffic() {
+		return traffic;
+	}
+	public void setTraffic(int traffic) {
+		this.traffic = traffic;
+	}
+	public int getIsEvent() {
+		return isEvent;
+	}
+	public void setIsEvent(int isEvent) {
+		this.isEvent = isEvent;
+	}
+	public int getIsRaining() {
+		return isRaining;
+	}
+	public void setIsRaining(int isRaining) {
+		this.isRaining = isRaining;
+	}
+	public int getIsSnowing() {
+		return isSnowing;
+	}
+	public void setIsSnowing(int isSnowing) {
+		this.isSnowing = isSnowing;
 	}	
 }
