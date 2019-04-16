@@ -87,6 +87,18 @@ public class TrendService {
 				case "locationId":
 					trendMap.put(fieldsArray[i], trend.getLocationId());
 					break;
+				case "traffic":
+					trendMap.put(fieldsArray[i], trend.getTraffic());
+					break;
+				case "isEvent":
+					trendMap.put(fieldsArray[i], trend.getIsEvent());
+					break;
+				case "isRaining":
+					trendMap.put(fieldsArray[i], trend.getIsRaining());
+					break;
+				case "isSnowing":
+					trendMap.put(fieldsArray[i], trend.getIsSnowing());
+					break;
 				default:
 				}
 			}
@@ -97,6 +109,10 @@ public class TrendService {
 			trendMap.put("occupied", trend.getOccupied());
 			trendMap.put("total", trend.getTotal());
 			trendMap.put("locationId", trend.getLocationId());
+			trendMap.put("traffic", trend.getTraffic());
+			trendMap.put("isEvent", trend.getIsEvent());
+			trendMap.put("isRaining", trend.getIsRaining());
+			trendMap.put("isSnowing", trend.getIsSnowing());
 			}
 		return trendMap;
 		}
