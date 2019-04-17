@@ -42,27 +42,27 @@ public class ParkingHistory {
 	
 	
 
-	public ParkingHistory(String parkingId, String parkingState, String sensorState, int parkingInformationId) {
+	public ParkingHistory(int parkingId, String parkingState, String sensorState) {
 		super();
 		
 		//this.parkingIdOld = parkingId;
 		this.parkingState = parkingState;
 		this.sensorState = sensorState;
-		this.parkingInformation = new ParkingInformation(parkingInformationId, 0, 0);
+		this.parkingInformation = new ParkingInformation(parkingId, 0, 0);
 		
 		/*Calendar cal = Calendar.getInstance();		
 		this.date = cal.get(Calendar.DATE);		
 		this.minute = cal.get(Calendar.MINUTE);*/
 	}
 
-	public ParkingHistory(String parkingId, String parkingState, String sensorState, Calendar dateTime, int parkingInformationId) {
+	public ParkingHistory(int parkingId, String parkingState, String sensorState, Calendar dateTime) {
 		super();
 		
 		//this.parkingIdOld = parkingId;
 		this.parkingState = parkingState;
 		this.sensorState = sensorState;
 		this.dateTime = dateTime;
-		this.parkingInformation = new ParkingInformation(parkingInformationId, 0, 0);
+		this.parkingInformation = new ParkingInformation(parkingId, 0, 0);
 	}
 
 	public Long getId() {
