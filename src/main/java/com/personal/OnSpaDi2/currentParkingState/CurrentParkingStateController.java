@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.personal.OnSpaDi2.locationInformation.LocationInformation;
+import com.personal.OnSpaDi2.parkingHisory.ParkingHistory;
+import com.personal.OnSpaDi2.parkingHisory.ParkingHistoryService;
 import com.personal.OnSpaDi2.parkingInformation.ParkingInformation;
 import com.personal.OnSpaDi2.parkingInformation.ParkingInformationService;
 
@@ -23,6 +25,9 @@ public class CurrentParkingStateController {
 	
 	@Autowired
 	private ParkingInformationService parkingInformationService;
+	
+	@Autowired
+	private ParkingHistoryService parkingHistoryService;
 	
 	@RequestMapping("/currentParkingState")
 	public List<CurrentParkingState> getAllCurrentParkingState(){
@@ -67,7 +72,11 @@ public class CurrentParkingStateController {
 			currentParkingState.setParkingInformation(new ParkingInformation(parkingId, 0, 0));
 			int locationId = parkingInformationService.getParkingInformationById(parkingId).getLocationInformation().getLocationId();
 			currentParkingState.setLocationInformation(new LocationInformation(locationId));
-		}		
+		}
+		
+		ParkingHistory parkingHistory = new ParkingHistory(parkingId, currentParkingState.getParkingState(), currentParkingState.getSensorState());
+		
+		parkingHistoryService.addParkingHistory(parkingHistory);
 		
 		return currentParkingStateService.addCurrentParkingState(currentParkingState);
 	}	
